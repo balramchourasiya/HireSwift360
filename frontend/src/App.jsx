@@ -2,7 +2,7 @@ import React, { useEffect, useMemo, useState } from 'react';
 import { Activity, BriefcaseBusiness, Users, UploadCloud, Search, Plus, Sparkles, LayoutDashboard, Settings, ChevronRight, FileText, CheckCircle2, AlertCircle, X, RefreshCw, Bot } from 'lucide-react';
 import { AIInterviews, CandidateInterviewRoom } from './AIInterviews';
 
-const API = import.meta.env.VITE_API_URL || 'http://localhost:8000/api';
+const API = import.meta.env.VITE_API_URL || '/api';
 const stages = ['Applied', 'Shortlisted', 'Interview', 'Offer', 'Hired', 'Rejected'];
 
 export default function App() {

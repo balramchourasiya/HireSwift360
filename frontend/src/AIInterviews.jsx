@@ -115,7 +115,7 @@ export function AIInterviews({ request, candidates, jobs }) {
 
 export function CandidateInterviewRoom() {
   const token = window.location.hash.slice(1);
-  const api = import.meta.env.VITE_API_URL || 'http://localhost:8000/api';
+  const api = import.meta.env.VITE_API_URL || '/api';
   const [session, setSession] = useState(null);
   const [consent, setConsent] = useState(false);
   const [modality, setModality] = useState('voice');
