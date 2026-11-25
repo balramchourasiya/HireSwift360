@@ -8,7 +8,7 @@ HireSwift 360 is a recruiter-facing talent intelligence platform. This iteration
 
 ## What's implemented
 
-1. **Login and company isolation** — workspace registration, login, Argon2 password hashes, signed expiring JWTs, role checks and company scoping on all recruiter data endpoints. Cross-workspace object access returns 404. The first registrant for a workspace is its admin.
+1. **Login and company isolation** — workspace registration, login, Argon2 password hashes, signed expiring JWTs, role checks and company scoping on all recruiter data endpoints. Cross-workspace object access returns 404. The first registrant for a workspace is its admin. The login screen also offers a read-only demo workspace with local sample data; demo access does not bypass authentication or expose customer data.
 2. **Richer resume parsing** — PDF and DOCX extraction (including DOCX tables), contact/education/experience heuristics, skill taxonomy, section extraction and text snippets showing where skills were found. Scanned PDFs need OCR and currently return a reviewable error.
 3. **Explainable matching** — explicit skill/experience/education criteria plus text relevance. Default local relevance uses a standard-library TF-IDF implementation; optional sentence-transformer embeddings can be enabled. If embeddings cannot load, matching logs the failure and reports its local TF-IDF fallback in the result. Match results show matched/missing skills, evidence snippets, weights and the scoring method. This is not a probability of success.
 4. **Candidate comparison** — compare 2–5 profiles side by side, with tenant-scoped API and recruiter UI.
