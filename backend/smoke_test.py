@@ -6,6 +6,9 @@ from fastapi.testclient import TestClient
 fd, db_path = tempfile.mkstemp(suffix=".db"); os.close(fd)
 os.environ["DATABASE_URL"] = f"sqlite:///{db_path}"
 os.environ["JWT_SECRET_KEY"] = "smoke-test-only-secret-key-0123456789-abcdef"
+from app.database import normalize_database_url
+assert normalize_database_url("postgres://user:pass@db.example.test/app") == "postgresql+psycopg://user:pass@db.example.test/app"
+assert normalize_database_url("postgresql://user:pass@db.example.test/app") == "postgresql+psycopg://user:pass@db.example.test/app"
 for key in ["SMTP_HOST", "SMTP_PORT", "SMTP_USER", "SMTP_PASSWORD", "MAIL_FROM"]:
     os.environ.pop(key, None)
 from app.main import app  # noqa: E402
