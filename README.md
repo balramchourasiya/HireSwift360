@@ -1,5 +1,7 @@
 # HireSwift 360
 
+HireSwift 360 is an AI-powered recruitment management platform designed to simplify hiring, from job creation and candidate selection to recruiter-reviewed AI-assisted interviews.
+
 HireSwift 360 is a recruiter-facing talent intelligence platform. This iteration upgrades the original MVP with workspace authentication, company-scoped access, evidence-aware resume extraction, semantic relevance scoring, candidate comparison, interview scheduling, email invitations, analytics and audit events.
 
 > **Important:** This is a development foundation, not a production-certified HR system. Validate your legal basis/consent, retention and deletion workflows, security controls, model quality and accessibility before processing real candidate data. Scores are decision-support only; never automatically reject candidates.
