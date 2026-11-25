@@ -89,7 +89,7 @@ Question generation and evaluation currently use a deterministic local role/skil
 
 The root `vercel.json` configures separate `backend` (FastAPI) and `frontend` (Vite) services. Public `/api/*` requests route to FastAPI; all other paths route to the frontend. The API health check is `/api/health`. The frontend uses same-origin `/api` URLs, so it does not need a build-time API hostname. The Vite development proxy keeps the same API paths working locally.
 
-Configure backend environment variables in Vercel for the backend service: a unique `JWT_SECRET_KEY`, a persistent PostgreSQL `DATABASE_URL`, and `CORS_ORIGINS` set to the deployed site origin. Configure SMTP variables only if interview email invitations are needed. Do not use the default local SQLite database for production: Vercel function storage is not a persistent database. Browser voice recognition requires HTTPS and may be subject to browser-provider audio processing policies.
+Configure backend environment variables in Vercel for the backend service: a unique `JWT_SECRET_KEY`, a persistent PostgreSQL URL (`DATABASE_URL` or Vercel Postgres's `POSTGRES_URL`), and `CORS_ORIGINS` set to the deployed site origin. The backend normalizes `postgres://` and `postgresql://` URLs to the installed Psycopg driver. Configure SMTP variables only if interview email invitations are needed. Do not use the default local SQLite database for production: Vercel function storage is not a persistent database. Browser voice recognition requires HTTPS and may be subject to browser-provider audio processing policies.
 
 ## Main API routes
 

@@ -1,5 +1,6 @@
 import os
 from pathlib import Path
+from typing import Mapping
 from dotenv import load_dotenv
 
 load_dotenv(Path(__file__).resolve().parents[1] / ".env")
@@ -14,7 +15,21 @@ def normalize_database_url(url: str) -> str:
     return url
 
 
-DATABASE_URL = normalize_database_url(os.getenv("DATABASE_URL", "sqlite:///./hireswift.db"))
+def configured_database_url(environ: Mapping[str, str]) -> str:
+    url = (
+        environ.get("DATABASE_URL")
+        or environ.get("POSTGRES_URL")
+        or environ.get("POSTGRES_URL_NON_POOLING")
+    )
+    if not url and environ.get("VERCEL") == "1":
+        raise RuntimeError(
+            "No PostgreSQL database is configured for Vercel. "
+            "Set DATABASE_URL or connect a Vercel Postgres integration that provides POSTGRES_URL."
+        )
+    return normalize_database_url(url or "sqlite:///./hireswift.db")
+
+
+DATABASE_URL = configured_database_url(os.environ)
 if os.getenv("VERCEL") == "1" and DATABASE_URL.startswith("sqlite"):
     raise RuntimeError(
         "Vercel requires a persistent PostgreSQL database. "
