@@ -1,0 +1,16 @@
+services:
+  api:
+    build: ./backend
+    ports: ["8000:8000"]
+    volumes: ["./backend:/app"]
+    environment:
+      DATABASE_URL: sqlite:///./hireswift.db
+  web:
+    image: node:22-alpine
+    working_dir: /app
+    command: sh -c "npm install && npm run dev -- --host 0.0.0.0"
+    ports: ["5173:5173"]
+    volumes: ["./frontend:/app"]
+    environment:
+      VITE_API_URL: http://localhost:8000/api
+    depends_on: [api]
